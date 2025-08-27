@@ -813,7 +813,7 @@
         
         <div class="hero-visual">
           <div class="hero-image">
-            <img src="images/Producto (1).jpg" alt="Imagen principal de piezas de vitrofusión" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.parentElement.innerHTML='<span>Imagen principal de piezas de vitrofusión</span>'">
+            <span>Imagen principal de piezas de vitrofusión</span>
           </div>
           <div class="floating-elements"></div>
           <div class="floating-elements"></div>
@@ -883,7 +883,7 @@
         
         <div class="hero-visual animate-on-scroll">
           <div class="hero-image">
-            <img src="images/Producto (2).jpg" alt="Imágenes del proceso de vitrofusión" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.parentElement.innerHTML='<span>Imágenes del proceso de vitrofusión</span>'">
+            <span>Imágenes del proceso de vitrofusión</span>
           </div>
         </div>
       </div>
@@ -901,7 +901,7 @@
       <div class="history-content">
         <div class="hero-visual animate-on-scroll">
           <div class="hero-image">
-            <img src="images/Producto (3).jpg" alt="Imagen del taller y proceso de trabajo" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.parentElement.innerHTML='<span>Imagen del taller y proceso de trabajo</span>'">
+            <span>Imagen del taller y proceso de trabajo</span>
           </div>
         </div>
         
@@ -1035,7 +1035,7 @@
       </div>
       <div class="modal-body">
         <div class="modal-image" id="modalImage">
-          <span>Imagen de la pieza</span>
+          <img id="modalImageSrc" alt="Imagen de la pieza" width="100%" height="100%" style="object-fit: contain;">
         </div>
         <div class="modal-info">
           <div style="margin-bottom: 1rem;">
@@ -1070,6 +1070,7 @@
         categoria: "Luz",
         precio: "$45.000 – $65.000",
         colores: ["rojo", "dorado", "turquesa"],
+        imagen: "images/Producto (1).jpg",
         descripcion: "Estructura tipo prisma con relieves y cuentas multicolor. Ilumina espacios con destellos cálidos y una luz única que danza a través del vidrio fusionado."
       },
       {
@@ -1078,6 +1079,7 @@
         categoria: "Joyas",
         precio: "$18.000 – $28.000",
         colores: ["azul", "naranja", "verde"],
+        imagen: "images/Producto (2).jpg",
         descripcion: "Textil trenzado artesanalmente con dije disco de vitrofusión. Liviano, cómodo y único. Las burbujas y pigmentos crean efectos de luz únicos."
       },
       {
@@ -1086,6 +1088,7 @@
         categoria: "Joyas",
         precio: "$12.000 – $20.000",
         colores: ["azul"],
+        imagen: "images/Producto (3).jpg",
         descripcion: "Formas orgánicas inspiradas en el océano, con azules profundos y brillos sutiles. Hipoalergénicos y perfectos para el uso diario."
       },
       {
@@ -1094,6 +1097,7 @@
         categoria: "Móviles",
         precio: "$25.000 – $40.000",
         colores: ["multicolor"],
+        imagen: "images/Producto (4).jpg",
         descripcion: "Pieza decorativa para ventana o jardín. La luz natural atraviesa el vidrio pintando el entorno con colores cálidos y mágicos."
       },
       {
@@ -1102,6 +1106,7 @@
         categoria: "Serie",
         precio: "$38.000 – $55.000",
         colores: ["turquesa", "azul"],
+        imagen: "images/Producto (5).jpg",
         descripcion: "Texturas que evocan espuma marina y oleaje. Edición limitada inspirada en las costas chilenas. Cada pieza es completamente única."
       },
       {
@@ -1110,6 +1115,7 @@
         categoria: "Luz",
         precio: "$55.000 – $75.000",
         colores: ["verde", "dorado"],
+        imagen: "images/Producto (6).jpg",
         descripcion: "Diseño moderno con formas geométricas. Los vidrios texturizados crean juegos de luz y sombra únicos en cada ambiente."
       },
       {
@@ -1118,15 +1124,8 @@
         categoria: "Joyas",
         precio: "$32.000 – $45.000",
         colores: ["verde", "marrón", "dorado"],
+        imagen: "images/Producto (7).jpg",
         descripcion: "Set de collar y aros inspirado en hojas y elementos naturales. Perfecta armonía entre formas orgánicas y colores tierra."
-      },
-      {
-        id: "movil-cristales",
-        nombre: "Móvil Cristales de Luz",
-        categoria: "Móviles",
-        precio: "$30.000 – $50.000",
-        colores: ["cristal", "iridiscente"],
-        descripcion: "Múltiples elementos cristalinos que refractan la luz creando arcoíris naturales. Ideal para espacios que buscan magia y color."
       }
     ];
 
@@ -1140,24 +1139,10 @@
     }
 
     function createProductCard(product) {
-      // Map product IDs to image filenames
-      const imageMap = {
-        "lampara-prisma-roja": "Producto (2).jpg",
-        "collar-textil-disco": "Producto (3).jpg",
-        "aros-azules": "Producto (4).jpg",
-        "movil-sol-luna": "Producto (5).jpg",
-        "serie-mar": "Producto (6).jpg",
-        "lampara-geometrica": "Producto (7).jpg",
-        "conjunto-naturaleza": "Producto (1).jpg",
-        "movil-cristales": "Producto (5).jpg"
-      };
-      
-      const imageName = imageMap[product.id] || "Producto (1).jpg";
-      
       return `
         <div class="product-card animate-on-scroll" data-category="${product.categoria}">
           <div class="product-image">
-            <img src="images/${imageName}" alt="${product.nombre}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.parentElement.innerHTML='<span>Imagen: ${product.nombre}</span>'">
+            <img src="${product.imagen}" alt="${product.nombre}" onerror="this.parentElement.innerHTML='<span>Imagen: ${product.nombre}</span>'">
           </div>
           <div class="product-info">
             <div class="product-category">${product.categoria}</div>
@@ -1210,20 +1195,6 @@
       const product = PRODUCTS.find(p => p.id === productId);
       if (!product) return;
 
-      // Map product IDs to image filenames
-      const imageMap = {
-        "lampara-prisma-roja": "Producto (2).jpg",
-        "collar-textil-disco": "Producto (3).jpg",
-        "aros-azules": "Producto (4).jpg",
-        "movil-sol-luna": "Producto (5).jpg",
-        "serie-mar": "Producto (6).jpg",
-        "lampara-geometrica": "Producto (7).jpg",
-        "conjunto-naturaleza": "Producto (1).jpg",
-        "movil-cristales": "Producto (5).jpg"
-      };
-      
-      const imageName = imageMap[product.id] || "Producto (1).jpg";
-
       const modal = document.getElementById('productModal');
       const modalTitle = document.getElementById('modalTitle');
       const modalCategory = document.getElementById('modalCategory');
@@ -1238,126 +1209,66 @@
       modalCategory.textContent = product.categoria;
       modalPrice.textContent = product.precio;
       modalDescription.textContent = product.descripcion;
-      modalImage.innerHTML = `<img src="images/${imageName}" alt="${product.nombre}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.parentElement.innerHTML='<span>Imagen de la pieza</span>'">`;
+      modalImage.innerHTML = `<img src="${product.imagen}" alt="${product.nombre}" style="width: 100%; height: 100%; object-fit: cover;">`;
+      
+      // Update WhatsApp links
       modalWhatsappJess.href = createWhatsAppLink(PHONE_JESS, `Hola Jess, me interesa "${product.nombre}"`);
-      modalWhatsappCarlos.href = createWhatsAppLink(PHONE_CARLOS, `Hola Carlos, me interesa "${product.nombre}" viendo tu web`);
+      modalWhatsappCarlos.href = createWhatsAppLink(PHONE_CARLOS, `Hola Carlos, me interesa "${product.nombre}"`);
 
       // Show modal
-      modal.style.display = 'flex';
+      modal.classList.add('show');
       document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
       const modal = document.getElementById('productModal');
-      modal.style.display = 'none';
-      document.body.style.overflow = 'auto';
+      modal.classList.remove('show');
+      document.body.style.overflow = '';
     }
 
-    // ================= SCROLL ANIMATIONS =================
+    // Close modal when clicking outside
+    document.getElementById('productModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    // ================= SCROLL ANIMATION =================
     function observeScrollAnimations() {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('in-view');
-            observer.unobserve(entry.target);
           }
         });
-      }, {
-        threshold: 0.1,
-        rootMargin: '50px'
-      });
+      }, { threshold: 0.1 });
 
       document.querySelectorAll('.animate-on-scroll').forEach(el => {
         observer.observe(el);
       });
     }
 
-    // ================= HEADER SCROLL EFFECT =================
-    function initializeHeaderScroll() {
-      const header = document.getElementById('header');
-      
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-          header.classList.add('header-scrolled');
-        } else {
-          header.classList.remove('header-scrolled');
-        }
-      });
-    }
-
-    // ================= SMOOTH SCROLLING =================
-    function initializeSmoothScrolling() {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            const headerHeight = document.getElementById('header').offsetHeight;
-            const targetPosition = target.offsetTop - headerHeight;
-            
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth'
-            });
-          }
-        });
-      });
-    }
-
-    // ================= MODAL CLICK OUTSIDE TO CLOSE =================
-    function initializeModalClickOutside() {
-      const modal = document.getElementById('productModal');
-      
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          closeModal();
-        }
-      });
-    }
-
     // ================= INITIALIZATION =================
     document.addEventListener('DOMContentLoaded', function() {
-      // Set current year
-      document.getElementById('currentYear').textContent = new Date().getFullYear();
-      
-      // Initialize all functionality
+      // Render catalog
       renderCatalog();
+      
+      // Initialize filters
       initializeFilters();
-      initializeHeaderScroll();
-      initializeSmoothScrolling();
-      initializeModalClickOutside();
+      
+      // Initialize scroll animations
       observeScrollAnimations();
       
-      // Add keyboard support for modal
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          closeModal();
-        }
-      });
+      // Set current year in footer
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
     });
 
-    // ================= PERFORMANCE OPTIMIZATION =================
-    // Lazy loading for images when you add real images
-    function initializeLazyLoading() {
-      if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const img = entry.target;
-              img.src = img.dataset.src;
-              img.classList.remove('lazy');
-              imageObserver.unobserve(img);
-            }
-          });
-        });
-
-        document.querySelectorAll('img[data-src]').forEach(img => {
-          imageObserver.observe(img);
-        });
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
       }
-    }
+    });
   </script>
 </body>
 </html>
