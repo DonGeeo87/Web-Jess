@@ -1,4 +1,1274 @@
-```html
 <!doctype html>
-<!-- Última actualización: 2025-08-27 -->
 <html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JESS Vitrofusión — Arte único en vidrio desde 1996</title>
+  <meta name="description" content="Piezas únicas en vitrofusión: joyas, lámparas, móviles y cursos. Hecho a mano desde 1996 por Jessica & Carlos." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* =========== TOKENS =========== */
+    :root{
+      --bg-primary: #fafbfc;
+      --bg-secondary: #f1f5f9;
+      --bg-glass: rgba(255, 255, 255, 0.7);
+      --bg-card: rgba(255, 255, 255, 0.9);
+      
+      --text-primary: #1e293b;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      
+      --brand-primary: #0f766e; /* Teal elegante */
+      --brand-secondary: #0891b2; /* Cyan */
+      --accent-gold: #f59e0b; /* Dorado */
+      --accent-orange: #ea580c; /* Naranja cálido */
+      
+      --gradient-brand: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+      --gradient-hero: linear-gradient(135deg, #0f766e 0%, #0891b2 50%, #f59e0b 100%);
+      --gradient-glass: linear-gradient(135deg, rgba(15, 118, 110, 0.1) 0%, rgba(8, 145, 178, 0.1) 100%);
+      
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+      
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-2xl: 32px;
+      
+      --container-max: 1400px;
+    }
+
+    /* =========== RESET & BASE =========== */
+    *, *::before, *::after{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: var(--bg-primary);
+      overflow-x: hidden;
+    }
+    img{ max-width: 100%; height: auto; display: block; }
+    a{ color: var(--brand-primary); text-decoration: none; transition: all 0.3s ease; }
+    a:hover{ color: var(--brand-secondary); }
+    button{ font: inherit; cursor: pointer; border: none; background: none; transition: all 0.3s ease; }
+    
+    .font-display{ font-family: 'Playfair Display', serif; }
+    .container{ width: min(100% - 2rem, var(--container-max)); margin-inline: auto; }
+
+    /* =========== ANIMATED BACKGROUND =========== */
+    .bg-animated{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(15, 118, 110, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(8, 145, 178, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
+        var(--bg-primary);
+    }
+    .bg-animated::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 60% 40%, rgba(15, 118, 110, 0.06) 0%, transparent 60%),
+        radial-gradient(circle at 30% 70%, rgba(234, 88, 12, 0.04) 0%, transparent 60%);
+      animation: floatBg 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatBg{
+      0%{ transform: translate(0, 0) rotate(0deg); }
+      100%{ transform: translate(20px, -20px) rotate(1deg); }
+    }
+
+    /* =========== HEADER =========== */
+    header{
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(15, 118, 110, 0.1);
+      transition: all 0.3s ease;
+    }
+    .header-scrolled{
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .nav{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      gap: 2rem;
+    }
+    
+    .logo{
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+    .logo-icon{
+      width: 48px;
+      height: 48px;
+      background: var(--gradient-brand);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-icon::before{
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 3s infinite;
+    }
+    
+    @keyframes shimmer{
+      0%{ transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100%{ transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    
+    .nav-links{
+      display: flex;
+      gap: 0.5rem;
+    }
+    .nav-links a{
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      position: relative;
+      overflow: hidden;
+    }
+    .nav-links a::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: var(--gradient-brand);
+      transition: all 0.3s ease;
+      z-index: -1;
+    }
+    .nav-links a:hover::before{
+      width: 100%;
+    }
+    .nav-links a:hover{
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* =========== HERO SECTION =========== */
+    .hero{
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 0 4rem;
+    }
+    .hero::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-hero);
+      opacity: 0.03;
+      z-index: -1;
+    }
+    
+    .hero-content{
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    
+    .hero-text h1{
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 1.5rem;
+      background: var(--gradient-hero);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: fadeInUp 1s ease-out;
+    }
+    .hero-text p{
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin: 0 0 2rem;
+      line-height: 1.7;
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+    
+    .hero-badges{
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+    .badge{
+      padding: 0.5rem 1rem;
+      background: var(--bg-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(15, 118, 110, 0.2);
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--brand-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .hero-cta{
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease-out 0.6s both;
+    }
+    
+    .btn{
+      padding: 1rem 2rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary{
+      background: var(--gradient-brand);
+      color: white;
+      box-shadow: var(--shadow-lg);
+    }
+    .btn-primary:hover{
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-xl);
+    }
+    .btn-secondary{
+      background: var(--bg-glass);
+      backdrop-filter: blur(10px);
+      color: var(--text-primary);
+      border: 1px solid rgba(15, 118, 110, 0.2);
+    }
+    .btn-secondary:hover{
+      background: var(--brand-primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .hero-visual{
+      position: relative;
+      animation: fadeInRight 1s ease-out 0.3s both;
+    }
+    .hero-image{
+      width: 100%;
+      height: 400px;
+      background: var(--bg-card);
+      border-radius: var(--radius-2xl);
+      border: 1px solid rgba(15, 118, 110, 0.1);
+      box-shadow: var(--shadow-2xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 1.125rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-image::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-glass);
+    }
+    .floating-elements{
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 80px;
+      height: 80px;
+      background: var(--gradient-brand);
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: float 6s ease-in-out infinite;
+    }
+    .floating-elements:nth-child(2){
+      top: auto;
+      bottom: -30px;
+      left: -30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
+      animation-delay: -3s;
+    }
+
+    @keyframes float{
+      0%, 100%{ transform: translateY(0) rotate(0deg); }
+      50%{ transform: translateY(-20px) rotate(180deg); }
+    }
+    @keyframes fadeInUp{
+      from{ opacity: 0; transform: translateY(30px); }
+      to{ opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInRight{
+      from{ opacity: 0; transform: translateX(30px); }
+      to{ opacity: 1; transform: translateX(0); }
+    }
+
+    /* =========== SECTIONS =========== */
+    section{
+      padding: 6rem 0;
+      position: relative;
+    }
+    .section-header{
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-header h2{
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 600;
+      margin: 0 0 1rem;
+      color: var(--text-primary);
+    }
+    .section-header p{
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* =========== CATALOG =========== */
+    .filters{
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+    .filter{
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      background: var(--bg-card);
+      border: 1px solid rgba(15, 118, 110, 0.1);
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .filter.active,
+    .filter:hover{
+      background: var(--gradient-brand);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .catalog-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    
+    .product-card{
+      background: var(--bg-card);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(15, 118, 110, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .product-card:hover{
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-2xl);
+    }
+    .product-image{
+      width: 100%;
+      height: 250px;
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      position: relative;
+      overflow: hidden;
+    }
+    .product-image::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-glass);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .product-card:hover .product-image::before{
+      opacity: 1;
+    }
+    .product-info{
+      padding: 1.5rem;
+    }
+    .product-title{
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin: 0 0 0.5rem;
+      color: var(--text-primary);
+    }
+    .product-category{
+      color: var(--brand-primary);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .product-price{
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      margin: 0.75rem 0;
+    }
+    .product-description{
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .product-actions{
+      display: flex;
+      gap: 0.75rem;
+    }
+    .btn-sm{
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    /* =========== HISTORY SECTION =========== */
+    .history-content{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .timeline{
+      position: relative;
+    }
+    .timeline::before{
+      content: '';
+      position: absolute;
+      left: 2rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--gradient-brand);
+    }
+    .timeline-item{
+      position: relative;
+      padding-left: 4rem;
+      margin-bottom: 3rem;
+    }
+    .timeline-item::before{
+      content: '';
+      position: absolute;
+      left: 1.25rem;
+      top: 0.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      background: var(--gradient-brand);
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: var(--shadow-md);
+    }
+    .timeline-year{
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--brand-primary);
+      margin-bottom: 0.5rem;
+    }
+    .timeline-description{
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* =========== CONTACT SECTION =========== */
+    .contact-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .contact-card{
+      background: var(--bg-card);
+      padding: 2rem;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(15, 118, 110, 0.1);
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .contact-card:hover{
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+    }
+    .contact-icon{
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      background: var(--gradient-brand);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+    }
+    .contact-title{
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      color: var(--text-primary);
+    }
+    .contact-info{
+      color: var(--text-secondary);
+    }
+
+    /* =========== FOOTER =========== */
+    footer{
+      background: var(--text-primary);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+    }
+    .footer-content{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-section h3{
+      margin: 0 0 1rem;
+      color: var(--accent-gold);
+    }
+    .social-links{
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .social-link{
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    .social-link:hover{
+      background: var(--brand-primary);
+      transform: translateY(-2px);
+    }
+
+    /* =========== MODAL =========== */
+    .modal{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 2rem;
+    }
+    .modal.show{
+      display: flex;
+    }
+    .modal-content{
+      background: white;
+      border-radius: var(--radius-xl);
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .modal-header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid rgba(15, 118, 110, 0.1);
+    }
+    .modal-body{
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .modal-image{
+      width: 100%;
+      height: 300px;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+    }
+    .close-btn{
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(15, 118, 110, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-primary);
+      font-size: 1.5rem;
+    }
+    .close-btn:hover{
+      background: var(--brand-primary);
+      color: white;
+    }
+
+    /* =========== RESPONSIVE =========== */
+    @media (max-width: 1024px){
+      .hero-content{
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+      }
+      .history-content{
+        grid-template-columns: 1fr;
+      }
+      .timeline::before{
+        left: 1rem;
+      }
+      .timeline-item{
+        padding-left: 3rem;
+      }
+      .timeline-item::before{
+        left: 0.25rem;
+      }
+    }
+    
+    @media (max-width: 768px){
+      .nav{
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .nav-links{
+        order: -1;
+        width: 100%;
+        justify-content: center;
+      }
+      .hero{
+        padding: 6rem 0 3rem;
+      }
+      section{
+        padding: 4rem 0;
+      }
+      .modal-body{
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 640px){
+      .catalog-grid{
+        grid-template-columns: 1fr;
+      }
+      .contact-grid{
+        grid-template-columns: 1fr;
+      }
+      .hero-cta{
+        flex-direction: column;
+        align-items: center;
+      }
+      .filters{
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* =========== SCROLL ANIMATIONS =========== */
+    @media (prefers-reduced-motion: no-preference) {
+      .animate-on-scroll{
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+      }
+      .animate-on-scroll.in-view{
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-animated"></div>
+
+  <!-- ================= HEADER ================= -->
+  <header id="header">
+    <div class="container">
+      <nav class="nav">
+        <a class="logo" href="#inicio">
+          <div class="logo-icon">J</div>
+          <div>
+            <div style="font-weight: 800;">JESS</div>
+            <div style="font-size: 0.875rem; opacity: 0.7;">Vitrofusión</div>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="#catalogo">Catálogo</a>
+          <a href="#historia">Historia</a>
+          <a href="#taller">Taller</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Vidrio que cobra vida</h1>
+          <p>Desde 1996, Jessica & Carlos transforman el vidrio en arte único a través de la <strong>vitrofusión</strong>. Cada pieza cuenta una historia de color, luz y pasión artesanal.</p>
+          
+          <div class="hero-badges">
+            <div class="badge">
+              ✨ 29 años de experiencia
+            </div>
+            <div class="badge">
+              🎨 Piezas únicas
+            </div>
+            <div class="badge">
+              🏠 Hecho en Chile
+            </div>
+          </div>
+          
+          <div class="hero-cta">
+            <a href="#catalogo" class="btn btn-primary">Explorar catálogo</a>
+            <a href="https://wa.me/56994912874?text=Hola%20Jess%2C%20me%20encanta%20tu%20trabajo%20%3A)" target="_blank" class="btn btn-secondary">
+              💬 Contactar por WhatsApp
+            </a>
+          </div>
+        </div>
+        
+        <div class="hero-visual">
+          <div class="hero-image">
+            <span>Imagen principal de piezas de vitrofusión</span>
+          </div>
+          <div class="floating-elements"></div>
+          <div class="floating-elements"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CATALOG ================= -->
+  <section id="catalogo">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2>Catálogo de Arte</h2>
+        <p>Descubre nuestras creaciones únicas en vitrofusión, cada una diseñada con amor y técnica artesanal.</p>
+      </div>
+      
+      <div class="filters">
+        <button class="filter active" data-filter="all">Todo</button>
+        <button class="filter" data-filter="Joyas">Joyas</button>
+        <button class="filter" data-filter="Luz">Iluminación</button>
+        <button class="filter" data-filter="Móviles">Móviles</button>
+        <button class="filter" data-filter="Serie">Series Limitadas</button>
+      </div>
+      
+      <div class="catalog-grid" id="catalogGrid"></div>
+    </div>
+  </section>
+
+  <!-- ================= HISTORY ================= -->
+  <section id="historia">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2>Nuestra Historia</h2>
+        <p>Un viaje de más de 25 años transformando el vidrio en arte</p>
+      </div>
+      
+      <div class="history-content">
+        <div class="timeline animate-on-scroll">
+          <div class="timeline-item">
+            <div class="timeline-year">1996</div>
+            <div class="timeline-description">
+              Jessica y Carlos dejan sus trabajos tradicionales para fundar su taller. Con valentía y visión, apuestan por la vitrofusión, una técnica artística poco conocida en Chile.
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-year">2000s</div>
+            <div class="timeline-description">
+              Años de experimentación y perfeccionamiento. Desarrollan técnicas propias para crear texturas únicas, juegos de color y efectos de luz que caracterizan su trabajo.
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-year">2010s</div>
+            <div class="timeline-description">
+              Expansión y reconocimiento. Sus piezas comienzan a habitar hogares de Chile y el mundo, llevando la calidez del arte chileno más allá de las fronteras.
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-year">Hoy</div>
+            <div class="timeline-description">
+              Con 29 años de experiencia, continúan explorando nuevos horizontes creativos. Cada pieza sigue siendo única, creada con la misma pasión del primer día.
+            </div>
+          </div>
+        </div>
+        
+        <div class="hero-visual animate-on-scroll">
+          <div class="hero-image">
+            <span>Imágenes del proceso de vitrofusión</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WORKSHOP ================= -->
+  <section id="taller">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2>Taller & Proceso</h2>
+        <p>Descubre cómo transformamos el vidrio en obras de arte únicas</p>
+      </div>
+      
+      <div class="history-content">
+        <div class="hero-visual animate-on-scroll">
+          <div class="hero-image">
+            <span>Imagen del taller y proceso de trabajo</span>
+          </div>
+        </div>
+        
+        <div class="timeline animate-on-scroll">
+          <div class="timeline-item">
+            <div class="timeline-year">Diseño</div>
+            <div class="timeline-description">
+              Cada pieza nace de una idea, un boceto que captura la esencia de lo que queremos expresar. El diseño considera tanto la estética como la función.
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-year">Preparación</div>
+            <div class="timeline-description">
+              Seleccionamos cuidadosamente los vidrios, pigmentos y materiales. Cada color y textura se elige para crear la armonía perfecta en la pieza final.
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-year">Fusión</div>
+            <div class="timeline-description">
+              El calor del horno fusiona las capas de vidrio, creando burbujas, relieves y brillos únicos. Este proceso requiere precisión y años de experiencia.
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-year">Acabado</div>
+            <div class="timeline-description">
+              Pulimos, ensamblamos y damos los toques finales. Cada detalle se cuida para que la pieza irradie la calidad y belleza que nos caracteriza.
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 3rem;" class="animate-on-scroll">
+        <div class="badge" style="margin: 0 auto 2rem; font-size: 1rem; padding: 1rem 2rem;">
+          🎯 Próximas Ferias • Síguenos en Instagram para fechas actualizadas
+        </div>
+        <p style="color: var(--text-secondary);">
+          Encuentra nuestras piezas en ferias artesanales de Valparaíso y Viña del Mar.<br>
+          Síguenos en <a href="https://www.instagram.com/jess_vitrofusion/" target="_blank" style="font-weight: 600;">@jess_vitrofusion</a> para estar al día.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contacto">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2>Conecta con Nosotros</h2>
+        <p>¿Tienes una idea en mente? ¿Quieres una pieza personalizada? Conversemos sobre tu proyecto.</p>
+      </div>
+      
+      <div class="contact-grid">
+        <a href="https://wa.me/56994912874?text=Hola%20Jess%2C%20quiero%20cotizar%20una%20pieza%20de%20vitrofusi%C3%B3n" 
+           target="_blank" 
+           class="contact-card animate-on-scroll">
+          <div class="contact-icon">📱</div>
+          <div class="contact-title">WhatsApp Jessica</div>
+          <div class="contact-info">+56 9 9491 2874</div>
+        </a>
+        
+        <a href="https://wa.me/56953316685?text=Hola%20Carlos%2C%20me%20interesa%20una%20pieza%20de%20vitrofusi%C3%B3n" 
+           target="_blank" 
+           class="contact-card animate-on-scroll">
+          <div class="contact-icon">📱</div>
+          <div class="contact-title">WhatsApp Carlos</div>
+          <div class="contact-info">+56 9 5331 6685</div>
+        </a>
+        
+        <a href="mailto:chicjessy@gmail.com?subject=Consulta%20Vitrofusi%C3%B3n%20JESS" 
+           class="contact-card animate-on-scroll">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-title">Email</div>
+          <div class="contact-info">chicjessy@gmail.com</div>
+        </a>
+      </div>
+      
+      <div style="text-align: center; margin-top: 3rem;" class="animate-on-scroll">
+        <div class="badge" style="margin: 0 auto 1rem; font-size: 1rem; padding: 1rem 2rem;">
+          📸 Síguenos en Instagram
+        </div>
+        <p style="color: var(--text-secondary); font-size: 1.125rem;">
+          <a href="https://www.instagram.com/jess_vitrofusion/" target="_blank" style="font-weight: 600; font-size: 1.25rem;">
+            @jess_vitrofusion
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>JESS Vitrofusión</h3>
+          <p>Arte único en vidrio desde 1996</p>
+          <p>Hecho con amor en Chile 🇨🇱</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <p>📱 +56 9 9491 2874 (Jess)</p>
+          <p>📱 +56 9 5331 6685 (Carlos)</p>
+          <p>✉️ chicjessy@gmail.com</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Síguenos</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/jess_vitrofusion/" target="_blank" class="social-link">📷</a>
+            <a href="https://wa.me/56994912874" target="_blank" class="social-link">💬</a>
+          </div>
+        </div>
+      </div>
+      
+      <div style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 2rem;">
+        <p>&copy; <span id="currentYear"></span> JESS Vitrofusión - Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODAL ================= -->
+  <div class="modal" id="productModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Título de la pieza</h3>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-image" id="modalImage">
+          <img id="modalImageSrc" alt="Imagen de la pieza" width="100%" height="100%" style="object-fit: contain;">
+        </div>
+        <div class="modal-info">
+          <div style="margin-bottom: 1rem;">
+            <span class="badge" style="margin-right: 0.5rem;" id="modalCategory">Categoría</span>
+            <span class="badge">PIEZA ÚNICA</span>
+          </div>
+          <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 1rem;" id="modalPrice">
+            Precio
+          </div>
+          <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.7;" id="modalDescription">
+            Descripción de la pieza
+          </p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="#" target="_blank" class="btn btn-primary" id="modalWhatsappJess">
+              💬 Contactar a Jess
+            </a>
+            <a href="#" target="_blank" class="btn btn-secondary" id="modalWhatsappCarlos">
+              💬 Contactar a Carlos
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ================= DATA ================= 
+    const PRODUCTS = [
+      {
+        id: "lampara-prisma-roja",
+        nombre: "Lámpara Prisma Roja",
+        categoria: "Luz",
+        precio: "$45.000 – $65.000",
+        colores: ["rojo", "dorado", "turquesa"],
+        imagen: "images/Producto (1).jpg",
+        descripcion: "Estructura tipo prisma con relieves y cuentas multicolor. Ilumina espacios con destellos cálidos y una luz única que danza a través del vidrio fusionado."
+      },
+      {
+        id: "collar-textil-disco",
+        nombre: "Collar Textil con Disco",
+        categoria: "Joyas",
+        precio: "$18.000 – $28.000",
+        colores: ["azul", "naranja", "verde"],
+        imagen: "images/Producto (2).jpg",
+        descripcion: "Textil trenzado artesanalmente con dije disco de vitrofusión. Liviano, cómodo y único. Las burbujas y pigmentos crean efectos de luz únicos."
+      },
+      {
+        id: "aros-azules",
+        nombre: "Set Aros Azules",
+        categoria: "Joyas",
+        precio: "$12.000 – $20.000",
+        colores: ["azul"],
+        imagen: "images/Producto (3).jpg",
+        descripcion: "Formas orgánicas inspiradas en el océano, con azules profundos y brillos sutiles. Hipoalergénicos y perfectos para el uso diario."
+      },
+      {
+        id: "movil-sol-luna",
+        nombre: "Móvil Sol & Luna",
+        categoria: "Móviles",
+        precio: "$25.000 – $40.000",
+        colores: ["multicolor"],
+        imagen: "images/Producto (4).jpg",
+        descripcion: "Pieza decorativa para ventana o jardín. La luz natural atraviesa el vidrio pintando el entorno con colores cálidos y mágicos."
+      },
+      {
+        id: "serie-mar",
+        nombre: "Serie Limitada MAR",
+        categoria: "Serie",
+        precio: "$38.000 – $55.000",
+        colores: ["turquesa", "azul"],
+        imagen: "images/Producto (5).jpg",
+        descripcion: "Texturas que evocan espuma marina y oleaje. Edición limitada inspirada en las costas chilenas. Cada pieza es completamente única."
+      },
+      {
+        id: "lampara-geometrica",
+        nombre: "Lámpara Geométrica",
+        categoria: "Luz",
+        precio: "$55.000 – $75.000",
+        colores: ["verde", "dorado"],
+        imagen: "images/Producto (6).jpg",
+        descripcion: "Diseño moderno con formas geométricas. Los vidrios texturizados crean juegos de luz y sombra únicos en cada ambiente."
+      },
+      {
+        id: "conjunto-naturaleza",
+        nombre: "Conjunto Naturaleza",
+        categoria: "Joyas",
+        precio: "$32.000 – $45.000",
+        colores: ["verde", "marrón", "dorado"],
+        imagen: "images/Producto (7).jpg",
+        descripcion: "Set de collar y aros inspirado en hojas y elementos naturales. Perfecta armonía entre formas orgánicas y colores tierra."
+      }
+    ];
+
+    // ================= PHONE NUMBERS =================
+    const PHONE_JESS = '56994912874';
+    const PHONE_CARLOS = '56953316685';
+
+    // ================= UTILITY FUNCTIONS =================
+    function createWhatsAppLink(phone, message) {
+      return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    }
+
+    function createProductCard(product) {
+      return `
+        <div class="product-card animate-on-scroll" data-category="${product.categoria}">
+          <div class="product-image">
+            <img src="${product.imagen}" alt="${product.nombre}" onerror="this.parentElement.innerHTML='<span>Imagen: ${product.nombre}</span>'">
+          </div>
+          <div class="product-info">
+            <div class="product-category">${product.categoria}</div>
+            <h3 class="product-title">${product.nombre}</h3>
+            <div class="product-price">${product.precio}</div>
+            <p class="product-description">${product.descripcion}</p>
+            <div class="product-actions">
+              <button class="btn btn-secondary btn-sm" onclick="openModal('${product.id}')">
+                👁️ Vista rápida
+              </button>
+              <a href="${createWhatsAppLink(PHONE_JESS, `Hola Jess, me interesa "${product.nombre}"`)}" 
+                 target="_blank" class="btn btn-primary btn-sm">
+                💬 Consultar
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // ================= CATALOG FUNCTIONALITY =================
+    function renderCatalog(filterCategory = 'all') {
+      const grid = document.getElementById('catalogGrid');
+      const filteredProducts = filterCategory === 'all' 
+        ? PRODUCTS 
+        : PRODUCTS.filter(product => product.categoria === filterCategory);
+      
+      grid.innerHTML = filteredProducts.map(createProductCard).join('');
+      observeScrollAnimations();
+    }
+
+    // ================= FILTER FUNCTIONALITY =================
+    function initializeFilters() {
+      const filters = document.querySelectorAll('.filter');
+      
+      filters.forEach(filter => {
+        filter.addEventListener('click', () => {
+          // Remove active class from all filters
+          filters.forEach(f => f.classList.remove('active'));
+          // Add active class to clicked filter
+          filter.classList.add('active');
+          // Filter products
+          renderCatalog(filter.dataset.filter);
+        });
+      });
+    }
+
+    // ================= MODAL FUNCTIONALITY =================
+    function openModal(productId) {
+      const product = PRODUCTS.find(p => p.id === productId);
+      if (!product) return;
+
+      const modal = document.getElementById('productModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalCategory = document.getElementById('modalCategory');
+      const modalPrice = document.getElementById('modalPrice');
+      const modalDescription = document.getElementById('modalDescription');
+      const modalImage = document.getElementById('modalImage');
+      const modalWhatsappJess = document.getElementById('modalWhatsappJess');
+      const modalWhatsappCarlos = document.getElementById('modalWhatsappCarlos');
+
+      // Update modal content
+      modalTitle.textContent = product.nombre;
+      modalCategory.textContent = product.categoria;
+      modalPrice.textContent = product.precio;
+      modalDescription.textContent = product.descripcion;
+      modalImage.innerHTML = `<img src="${product.imagen}" alt="${product.nombre}" style="width: 100%; height: 100%; object-fit: cover;">`;
+      
+      // Update WhatsApp links
+      modalWhatsappJess.href = createWhatsAppLink(PHONE_JESS, `Hola Jess, me interesa "${product.nombre}"`);
+      modalWhatsappCarlos.href = createWhatsAppLink(PHONE_CARLOS, `Hola Carlos, me interesa "${product.nombre}"`);
+
+      // Show modal
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('productModal');
+      modal.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('productModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    // ================= SCROLL ANIMATION =================
+    function observeScrollAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // ================= INITIALIZATION =================
+    document.addEventListener('DOMContentLoaded', function() {
+      // Render catalog
+      renderCatalog();
+      
+      // Initialize filters
+      initializeFilters();
+      
+      // Initialize scroll animations
+      observeScrollAnimations();
+      
+      // Set current year in footer
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
